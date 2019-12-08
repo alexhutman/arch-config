@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/zsh
 
 # This script pretty much just does everything from this https://neovim.io/doc/user/nvim.html#nvim-from-vim but automatically
 
@@ -9,7 +9,7 @@ nvim +"so $SCRIPT_DIR/output_config_dir.vim"
 rm "$SCRIPT_DIR/output_config_dir.vim"
 
 # Get rid of the blank lines produced by neovim (not sure why that happens)
-sed -i '' '/^$/d' "$SCRIPT_DIR/name_of_config_file"
+sed -i '/^$/d' "$SCRIPT_DIR/name_of_config_file"
 
 # Set variable for config dir path
 CFG_PATH="$(cat $SCRIPT_DIR/name_of_config_file)"
