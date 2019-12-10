@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/usr/bin/env zsh
 
 # This script pretty much just does everything from this https://neovim.io/doc/user/nvim.html#nvim-from-vim but automatically
 
