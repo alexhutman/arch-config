@@ -5,3 +5,6 @@
 # |___/\__,_/_/  /_/\__,_/_.___/_/\___/____/  
 
 
+# This is only useful for my current WSL configuration
+export c="/mnt/c"
+export e="/mnt/e"
