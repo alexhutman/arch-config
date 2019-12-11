@@ -13,13 +13,12 @@ alias vim="nvim"
 alias clear="clear && printf '\e[3J'"
 
 # Git aliases
-alias ga="git add"
+# NOTE: There are some functions for git in functions.zsh
 alias gb="git branch"
-alias gch="git checkout"
-alias gco="git commit"
+alias gco="git checkout"
+alias gcm="git commit"
 alias gd="git diff"
 alias gl="git log"
 alias gm="git merge"
 alias gp="git push"
-alias gr="git reset"
 alias gs="git status"

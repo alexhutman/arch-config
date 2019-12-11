@@ -5,6 +5,17 @@
 # /_/    \__,_/_/ /_/\___/\__/_/\____/_/ /_/____/  
 
 
+# Git functions
+function ga() {
+		git add "$@"
+		git status
+}
+
+function gr() {
+		git reset "$@"
+		git status
+}
+
 
 # To start shell in normal mode, not insert mode
 zle-line-init() { zle -K vicmd; }
