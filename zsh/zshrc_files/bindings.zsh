@@ -14,3 +14,7 @@ bindkey -v
 # respect to the current command in the buffer.
 bindkey "^K" history-beginning-search-backward
 bindkey "^J" history-beginning-search-forward
+
+# I know, KEYTIMEOUT isn't a binding, but the line above is the only reason I have it so I thought it would be apt here.
+bindkey kj vi-cmd-mode
+KEYTIMEOUT=15 # 150ms
