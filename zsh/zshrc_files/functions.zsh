@@ -48,3 +48,7 @@ function rmgitaliases()  {
 				echo "Your git plugin file is not in $ZSH/plugins/git/git.plugin.zsh"
 		fi
 }
+
+# The following is from https://stackoverflow.com/a/2342841/6708303
+# It allows you to treat only stdout as stdin. Just keeping it here for reference.
+# command 2>&1 >/dev/null | grep 'something' 
