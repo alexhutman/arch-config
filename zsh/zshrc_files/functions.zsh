@@ -5,6 +5,12 @@
 # /_/    \__,_/_/ /_/\___/\__/_/\____/_/ /_/____/  
 
 
+
+# To start shell in normal mode, not insert mode
+zle-line-init() { zle -K vicmd; }
+zle -N zle-line-init
+
+
 # Generate headers such as the one you see above
 function headergen() {
 	command -v figlet > /dev/null 2>&1
@@ -20,6 +26,25 @@ function headergen() {
 }
 
 
-# To start shell in normal mode, not insert mode
-zle-line-init() { zle -K vicmd; }
-zle -N zle-line-init
+# Unalias aliases from the git plugin
+function rmgitaliases()  {
+		git_plugin_dir="$ZSH/plugins/git/git.plugin.zsh"
+
+		if [[ -f "$git_plugin_dir" ]] 																		 # If git plugin isn't found, don't do anything
+		then						  																		 # Otherwise,
+				aliases_rm_cmd="sed -nE '/alias\s+/s/.*([&|\s]?)+alias\s*([^=]*)=.*/\2/p' $git_plugin_dir"	 # Grab all of the aliases that the plugin uses
+				alias_count=$(sed -n '/^\s*[^#].*/p' $ZSH/plugins/git/git.plugin.zsh | grep "alias" | wc -l) # Find out how many there are so we can make sure we unalias all of them
+		
+				if [[ $(eval $aliases_rm_cmd | wc -l) -ne $alias_count ]]									 # Make sure the counts are equal
+				then
+						echo "You're terrible at sed, Alex. Please fix me."
+				else
+						for git_alias in $(eval $aliases_rm_cmd)											 # Unalias all of them
+						do
+							unalias "$git_alias" 2>/dev/null
+						done
+				fi
+		else
+				echo "Your git plugin file is not in $ZSH/plugins/git/git.plugin.zsh"
+		fi
+}
