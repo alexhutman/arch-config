@@ -23,3 +23,9 @@ alias gm="git merge"
 alias gpl="git pull"
 alias gps="git push"
 alias gs="git status"
+
+# Colorize commands when possible. From github/LukeSmithxyz's config
+alias \
+	ls="ls -hN --color=auto --group-directories-first" \
+	grep="grep --color=auto" \
+	diff="diff --color=auto"

@@ -72,7 +72,7 @@ ZSH_THEME="robbyrussell"
 # Removing git plugin because I'd like my own aliases. NOTE: functions.zsh calls a
 # function to unalias those defined in the git plugin.
 # plugins=(git)
-plugins=()
+plugins=(zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 

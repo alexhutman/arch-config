@@ -19,3 +19,7 @@ nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
 nnoremap <C-H> <C-W>h
 
+" Splits open at the bottom and right. Vim default is stupid..
+set splitbelow splitright
+
+set nolist

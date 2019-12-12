@@ -18,3 +18,9 @@ bindkey "^J" history-beginning-search-forward
 # I know, KEYTIMEOUT isn't a binding, but the line below is the only reason I have it so I thought it would be apt here.
 bindkey kj vi-cmd-mode
 KEYTIMEOUT=15 # 150ms
+
+# (From github/LukeSmithxyz's config) Use vim keys in tab complete menu:
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
