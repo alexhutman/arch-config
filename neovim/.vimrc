@@ -1,7 +1,11 @@
-" Set monokai-bold theme 
+call plug#begin('~/.vim/plugged')
+Plug 'morhetz/gruvbox'
+call plug#end()
+" If this is the first time running on a machine, type ":PlugInstall" in vim 
+
+" Set term colors to 256
+set t_Co=256
 set termguicolors
-syntax on
-colorscheme monokai-bold
 
 " Add relative line numbers with absolute line number as the zeroth
 set number relativenumber
@@ -22,4 +26,11 @@ nnoremap <C-H> <C-W>h
 " Splits open at the bottom and right. Vim default is stupid..
 set splitbelow splitright
 
-set nolist
+"set nolist
+
+" Set gruvbox theme
+let g:gruvbox_contrast_dark = 'hard'
+colorscheme gruvbox
+set background=dark
+
+syntax on
