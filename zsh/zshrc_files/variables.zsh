@@ -8,3 +8,4 @@
 # This is only useful for my current WSL configuration
 export c="/mnt/c"
 export e="/mnt/e"
+export GOOS="linux"

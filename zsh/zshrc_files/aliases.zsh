@@ -29,3 +29,10 @@ alias \
 	ls="ls -hN --color=auto --group-directories-first" \
 	grep="grep --color=auto" \
 	diff="diff --color=auto"
+
+# If on WSL, alias clipboard utilities
+if grep -q "Microsoft" /proc/version;
+then
+	alias cbcopy="clip.exe"
+	alias cbpaste="powershell.exe Get-Clipboard"
+fi

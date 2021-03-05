@@ -63,3 +63,7 @@ function rmgitaliases()  {
 # The following is from https://stackoverflow.com/a/2342841/6708303
 # It allows you to treat only stdout as stdin. Just keeping it here for reference.
 # command 2>&1 >/dev/null | grep 'something' 
+
+function gitAddExcept() {
+	gs | sed -n '/modified/p' | awk '{ print $2 }' | grep -vP "$1"
+}
