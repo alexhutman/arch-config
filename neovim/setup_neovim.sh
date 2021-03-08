@@ -22,3 +22,5 @@ curl -fsSLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent
 
 # Install VimPlug
 nvim --headless +PlugInstall +qa
+# Echo newline because successful and failed installs don't have newlines
+echo
