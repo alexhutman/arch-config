@@ -84,6 +84,9 @@ fi
 # Move dotfiles
 mv dotfiles/* ~
 
+# Setup neovim
+./neovim/setup_neovim.sh
+
 echo "Changing shell to zsh. You will likely have to enter your password."
 chsh -s "$(which zsh)" && export SHELL="$(which zsh)" || echo "Couldn't change shell to zsh."
 
