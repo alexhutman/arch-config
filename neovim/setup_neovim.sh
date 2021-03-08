@@ -6,7 +6,7 @@
 # Set variable for config folder path
 if [ -z "$XDG_CONFIG_HOME" ]
 then
-	CFG_PATH="~/.config/nvim"
+	CFG_PATH="$HOME/.config/nvim"
 else
 	CFG_PATH="$XDG_CONFIG_HOME/nvim"
 fi
@@ -18,7 +18,7 @@ mkdir -p $CFG_PATH
 cp neovim/init.vim $CFG_PATH
 
 # Download VimPlug
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+curl -fsSLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Install VimPlug
 nvim --headless +PlugInstall +qa
