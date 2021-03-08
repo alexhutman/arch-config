@@ -88,7 +88,7 @@ mv dotfiles/* ~
 git clone https://github.com/powerline/fonts.git --depth=1
 ./fonts/install.sh
 rm -rf fonts
-read -p "You probably have to switch to a PowerLine font in your terminal. If you don't, the oh-my-zsh theme will look wonky. Press enter to acknowledge this."
+read -p "You probably have to switch to a PowerLine font in your terminal (Noto Mono currently works). If you don't, the oh-my-zsh theme will look wonky. Press enter to acknowledge this."
 
 # Setup neovim
 ./neovim/setup_neovim.sh
