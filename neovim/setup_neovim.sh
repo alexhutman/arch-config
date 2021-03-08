@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # This script pretty much just does everything from this https://neovim.io/doc/user/nvim.html#nvim-from-vim but automatically
 # It also installs VimPlug. It is run from <root>/main.sh so running it directly might not work because of the cp line
