@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # This script pretty much just does everything from this https://neovim.io/doc/user/nvim.html#nvim-from-vim but automatically
 # It also installs VimPlug
