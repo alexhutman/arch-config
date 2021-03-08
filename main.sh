@@ -69,26 +69,35 @@ fi
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
-if [ -z "$ZSH_CUSTOM" ]
+# Copy dotfiles
+cp $(find dotfiles -name "\.*") ~
+
+zsh << EOF
+# Source zshrc to get access to $ZSH_CUSTOM
+. ~/.zshrc
+
+if [ -z "\$ZSH_CUSTOM" ]
 then
-	err_and_exit "\$ZSH_CUSTOM variable is not set, but it should be.."
+	err_and_exit "\\$ZSH_CUSTOM variable is not set, but it should be.."
 else
 	# Move custom .zsh files
-	cp zshrc_files/*.zsh $ZSH_CUSTOM/
+	cp zshrc_files/*.zsh \$ZSH_CUSTOM/
 
 	# TODO: Put this in its own function or file in case I use more plugins in the future. Will be easier to manage.
 	# Install zsh-syntax-highlighting plugin
-	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \$ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 fi
-
-# Move dotfiles
-mv dotfiles/* ~
+EOF
 
 # Install PowerLine fonts (needed for oh-my-zsh theme)
-git clone https://github.com/powerline/fonts.git --depth=1
-./fonts/install.sh
-rm -rf fonts
-read -p "You probably have to switch to a PowerLine font in your terminal (Noto Mono currently works). If you don't, the oh-my-zsh theme will look wonky. Press enter to acknowledge this."
+if grep -q "Microsoft" /proc/version || [ "$(uname)" = "Darwin" ]
+then
+	read -p "If the zsh prompt looks wonky, you probably have to install these fonts on your host system (if on Mac or Windows). Install them at https://github.com/powerline/fonts. Press enter to acknowledge this: "
+else
+	git clone https://github.com/powerline/fonts.git --depth=1
+	./fonts/install.sh
+	rm -rf fonts
+fi
 
 # Setup neovim
 ./neovim/setup_neovim.sh
