@@ -76,6 +76,7 @@ else
 	# Move custom .zsh files
 	cp zshrc_files/*.zsh $ZSH_CUSTOM/
 
+	# TODO: Put this in its own function or file in case I use more plugins in the future. Will be easier to manage.
 	# Install zsh-syntax-highlighting plugin
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 fi
