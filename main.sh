@@ -68,7 +68,23 @@ fi
 
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-echo "Changing shell to zsh. You will likely have to enter your password."
-chsh -s "$(which zsh)"
 
-# TODO: Copy all zsh custom files to their respective places
+if [ -z "$ZSH_CUSTOM" ]
+then
+	err_and_exit "\$ZSH_CUSTOM variable is not set, but it should be.."
+else
+	# Move custom .zsh files
+	cp zshrc_files/*.zsh $ZSH_CUSTOM/
+
+	# Install zsh-syntax-highlighting plugin
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+fi
+
+# Move dotfiles
+mv dotfiles/* ~
+
+echo "Changing shell to zsh. You will likely have to enter your password."
+chsh -s "$(which zsh)" && export SHELL="$(which zsh)" || echo "Couldn't change shell to zsh."
+
+# Replace current shell with zsh
+exec zsh -l
