@@ -106,8 +106,5 @@ fi
 echo "Changing shell to zsh. You will likely have to enter your password."
 chsh -s "$(which zsh)" && export SHELL="$(which zsh)" || echo "Couldn't change shell to zsh."
 
-# Unset variables used in this script (since you're supposed to source it)
-unset UTILS_FNAME
-
 # Replace current shell with zsh
 exec zsh -l
