@@ -102,6 +102,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [ -z "$UTILS_FNAME" ]; then
+if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [ -z "$SETUP_CONF" ]; then
 	(tmux attach -t two_panes || tmux new -s two_panes) && tmux source-file ~/.tmux.conf
 fi
