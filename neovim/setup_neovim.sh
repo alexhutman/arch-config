@@ -20,7 +20,7 @@ cp neovim/init.vim $CFG_PATH
 # Download VimPlug
 curl -fsSLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-# Install VimPlug
-nvim --headless +PlugInstall +qa
-# Echo newline because successful and failed installs don't have newlines
-echo
+# Install VimPlug plugins
+echo "Installing VimPlug plugins..."
+# I believe sed -e is the same between GNU/BSD/etc. sed but if not, I'll eventually find out
+nvim --headless +PlugInstall +qa 2>&1 | sed -e '/Error detected while processing/d' -e '/line\s\+[0-9]\+:/d' -e '/E185:/d'
