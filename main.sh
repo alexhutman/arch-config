@@ -72,7 +72,7 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 # Copy dotfiles
 cp $(find dotfiles -name "\.*") ~
 
-zsh << EOF
+zsh <<-EOF
 SETUP_CONF="YES"
 # Source zshrc to get access to $ZSH_CUSTOM
 . ~/.zshrc
