@@ -84,7 +84,7 @@ echo "Installing plugins and custom zsh files..."
 zsh <<-EOF
 SETUP_CONF="YES"
 # Source zshrc to get access to $ZSH_CUSTOM
-. ~/.zshrc | grep -v 'plugin .* not found'
+. ~/.zshrc
 
 if [ -z "\$ZSH_CUSTOM" ]
 then
