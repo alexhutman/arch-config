@@ -29,10 +29,15 @@ err_and_exit() {
 	exit 1
 }
 
+pad_next_step() {
+	printf "\n\n"
+}
+
 pkg_mgr_warn() {
 	echo "Installing preferred packages. You will likely have to enter your password."
 }
 
+echo "Installing necessary packages..."
 UNAME="$(uname -s)" 
 if [ "$UNAME" = "Darwin" ]
 then
@@ -65,13 +70,17 @@ then
 			;;
 	esac
 fi
+pad_next_step
 
-# Install oh-my-zsh
+echo "Installing oh-my-zsh..."
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+pad_next_step
 
-# Copy dotfiles
+echo "Copying dotfiles..."
 cp $(find dotfiles -name "\.*") ~
+pad_next_step
 
+echo "Installing plugins and custom zsh files..."
 zsh <<-EOF
 SETUP_CONF="YES"
 # Source zshrc to get access to $ZSH_CUSTOM
@@ -89,8 +98,9 @@ else
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \$ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 fi
 EOF
+pad_next_step
 
-# Install PowerLine fonts (needed for oh-my-zsh theme)
+echo "Installing Powerline fonts (needed for oh-my-zsh theme) if necessary..."
 if grep -q "Microsoft" /proc/version || [ "$(uname)" = "Darwin" ]
 then
 	read -p "If the zsh prompt looks wonky, you probably have to install these fonts on your host system (if on Mac or Windows). Install them at https://github.com/powerline/fonts. Press enter to acknowledge this: "
@@ -99,12 +109,15 @@ else
 	./fonts/install.sh
 	rm -rf fonts
 fi
+pad_next_step
 
-# Setup neovim
+echo "Setting up neovim..."
 ./neovim/setup_neovim.sh
+pad_next_step
 
 echo "Changing shell to zsh. You will likely have to enter your password."
 chsh -s "$(which zsh)" && export SHELL="$(which zsh)" || echo "Couldn't change shell to zsh."
+pad_next_step
 
-# Replace current shell with zsh
+echo "Replacing current shell with zsh..."
 exec zsh -l
