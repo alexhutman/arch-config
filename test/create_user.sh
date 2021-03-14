@@ -1,10 +1,13 @@
 #!/bin/bash
 
-# Add user, set password and name to test
-sudo adduser test <<- EOF
+# First parameter is the user's name, defaults to "test"
+[ -z "$1" ] && NEW_USER="test" || NEW_USER="$1"
+
+# Add user, set password to "test" and name to supplied user name
+sudo adduser "$NEW_USER" <<- EOF
 	test
 	test
-	test
+	$NEW_USER
 
 
 
@@ -13,4 +16,4 @@ sudo adduser test <<- EOF
 EOF
 
 # Allow user to sudo
-sudo usermod -aG sudo test
+sudo usermod -aG sudo "$NEW_USER"
