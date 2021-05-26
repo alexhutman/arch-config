@@ -9,3 +9,5 @@
 export c="/mnt/c"
 export e="/mnt/e"
 export GOOS="linux"
+export VISUAL="vim"
+export EDITOR="$VISUAL"
