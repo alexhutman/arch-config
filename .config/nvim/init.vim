@@ -1,9 +1,15 @@
+# Yoinked this from Luke Smith
+# Installs vim-plug if it isn't already
+if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim"'))
+	echo "Downloading junegunn/vim-plug to manage plugins..."
+	silent !mkdir -p ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/
+	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim
+	autocmd VimEnter * PlugInstall
+endif
+
 call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
-Plug 'lervag/vimtex'
 call plug#end()
-" If this is the first time running on a machine, type ":PlugInstall" in vim
-" However, my config generator (https://github.com/alexhutman/config-generator/) does this automatically.
 
 " Set term colors to 256
 set t_Co=256
@@ -44,7 +50,6 @@ colorscheme gruvbox
 set background=dark
 
 syntax on
-
 
 function! YankSelectedText()
 	execute "normal! \"+y"

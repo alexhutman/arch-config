@@ -5,9 +5,8 @@
 # |___/\__,_/_/  /_/\__,_/_.___/_/\___/____/  
 
 
-# This is only useful for my current WSL configuration
-export c="/mnt/c"
-export e="/mnt/e"
+# Variables that are not here should be in ~/.config/shell/profile
 export GOOS="linux"
-export VISUAL="vim"
+export TERMINAL="st"
+export VISUAL="nvim"
 export EDITOR="$VISUAL"

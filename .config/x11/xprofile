@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Uncomment to use Xresources colors/settings on startup
+#xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources &
+
+# Flux-like program to not be flashbanged when a white screen comes up
+redshift -l 40.71427:-74.00597 &
+
+# Set wallpaper
+xwallpaper --zoom "${XDG_DATA_HOME:-$HOME/.local/share/}/bg"
+
+# To make transparency work
+xcompmgr &
