@@ -1,3 +1,3 @@
 # Config Generator
 
-Run `. ./main.sh` to set up my configuration.
+Adapted from LukeSmithxyz's voidrice config
