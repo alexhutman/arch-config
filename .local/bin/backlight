@@ -1,0 +1,45 @@
+#!/bin/bash
+
+DELTA=5
+
+usage() {
+	echo "Usage:
+  $0
+Options:
+  -i, increase brightness by DELTA (default: $DELTA)
+  -d, decrease brightness by DELTA (default: $DELTA)" >&2
+}
+
+set_dbright() {
+	[ -n "$DBRIGHT" ] && echo "Must supply either -i OR -d" >&2 && usage && exit 1
+	DBRIGHT="$1"
+}
+
+while getopts ":id" opt; do
+	case $opt in
+		i)
+			set_dbright $DELTA
+			;;
+		d)
+			set_dbright "-$DELTA"
+			;;
+		\?)
+			echo "Invalid option: -$OPTARG" >&2
+			usage
+			exit 1
+			;;
+	esac
+done
+
+# Exit if not called with i or d flag
+[ -z "$DBRIGHT" ] && usage && exit 1
+
+BACKLIGHT_FILE="/sys/class/backlight/nv_backlight/brightness"
+
+# Get current brightness
+# TODO: Probably have to change this if on a different setup but that's a problem for later
+CUR_BRIGHTNESS="$(cat $BACKLIGHT_FILE)"
+
+# Offset current brightness by DBRIGHT
+NEW_BRIGHTNESS=$((CUR_BRIGHTNESS+$DBRIGHT))
+echo $NEW_BRIGHTNESS > $BACKLIGHT_FILE
