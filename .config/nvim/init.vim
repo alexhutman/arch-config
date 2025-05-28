@@ -1,15 +1,14 @@
-# Yoinked this from Luke Smith
-# Installs vim-plug if it isn't already
-if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim"'))
-	echo "Downloading junegunn/vim-plug to manage plugins..."
-	silent !mkdir -p ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/
-	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim
-	autocmd VimEnter * PlugInstall
-endif
+set runtimepath^=~/.vim runtimepath+=~/.vim/after
+let &packpath = &runtimepath
+
 
 call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
+Plug 'lervag/vimtex'
+"Plug 'neovim/nvim-lspconfig'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
+" If this is the first time running on a machine, type ":PlugInstall" in vim
 
 " Set term colors to 256
 set t_Co=256
@@ -33,8 +32,12 @@ nnoremap <C-H> <C-W>h
 
 " Make tabs appear smaller
 set tabstop=4
+set expandtab
 set shiftwidth=4
 set softtabstop=4
+
+" Disable mouse crap
+set mouse=
 
 " Remap KJ to exit terminal mode
 tnoremap KJ <C-\><C-n>
@@ -48,6 +51,10 @@ set splitbelow splitright
 let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 set background=dark
+
+" Add dictionary (YMMV) https://vim.fandom.com/wiki/Dictionary_completions
+set dictionary+=/usr/share/dict/dwyl-eng-words
+set complete+=k
 
 syntax on
 
