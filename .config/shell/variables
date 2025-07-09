@@ -7,6 +7,5 @@
 
 # Variables that are not here should be in ~/.config/shell/profile
 export GOOS="linux"
-export TERMINAL="st"
 export VISUAL="nvim"
 export EDITOR="$VISUAL"
