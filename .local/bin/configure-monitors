@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# Ideally, you'd want to have `autorandr` installed, so you can save this profile after running this command
+xrandr --output DP-2 --mode 1920x1080 --rate 85 --output DP-0 --mode 1920x1080 --primary --rate 144 --right-of DP-2
