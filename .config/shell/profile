@@ -8,4 +8,6 @@ export XINITRC="${XDG_CONFIG_HOME:-$HOME/.config}/x11/xinitrc"
 export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 export LESSHISTFILE="-"
 
+export PATH="$PATH:$HOME/.local/bin"
+
 source $XDG_CONFIG_HOME/shell/variables
