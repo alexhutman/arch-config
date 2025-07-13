@@ -1,17 +1,21 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 DELTA=5
 
+error_msg() {
+    echo $@ >&2
+}
+
 usage() {
-	echo "Usage:
+	error_msg "Usage:
   $0
 Options:
   -i, increase brightness by DELTA (default: $DELTA)
-  -d, decrease brightness by DELTA (default: $DELTA)" >&2
+  -d, decrease brightness by DELTA (default: $DELTA)"
 }
 
 set_dbright() {
-	[ -n "$DBRIGHT" ] && echo "Must supply either -i OR -d" >&2 && usage && exit 1
+	[ -n "$DBRIGHT" ] && error_msg "Must supply either -i OR -d" && usage && exit 1
 	DBRIGHT="$1"
 }
 
@@ -24,17 +28,28 @@ while getopts ":id" opt; do
 			set_dbright "-$DELTA"
 			;;
 		\?)
-			echo "Invalid option: -$OPTARG" >&2
+			error_msg "Invalid option: -$OPTARG"
 			usage
 			exit 1
 			;;
 	esac
 done
 
+BACKLIGHT_DIR="/sys/class/backlight"
+NUM_BACKLIGHTS="$(ls -A "$BACKLIGHT_DIR" | wc -l)"
+if [ $NUM_BACKLIGHTS -eq 0 ]; then
+   error_msg "No backlights detected."
+   exit 1
+elif [ $NUM_BACKLIGHTS -gt 1 ]; then
+   error_msg "Multiple backlights detected."
+   exit 1
+fi
+
 # Exit if not called with i or d flag
 [ -z "$DBRIGHT" ] && usage && exit 1
 
-BACKLIGHT_FILE="/sys/class/backlight/nv_backlight/brightness"
+BACKLIGHT_FILE="$(ls $BACKLIGHT_DIR/*/brightness)"
+[ ! -f "$BACKLIGHT_FILE" ] && error_msg "Your backlight is missing a brightness file" && exit 1
 
 # Get current brightness
 # TODO: Probably have to change this if on a different setup but that's a problem for later
