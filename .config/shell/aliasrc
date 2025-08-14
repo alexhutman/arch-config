@@ -11,6 +11,8 @@
 # Clear whole screen
 alias clear="clear && printf '\e[3J'"
 
+alias schleep="systemctl suspend"
+
 # Git aliases
 # NOTE: There are some functions for git in functions.zsh
 alias gb="git branch"
