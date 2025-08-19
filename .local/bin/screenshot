@@ -6,4 +6,4 @@ FILENAME_TEMPLATE='%Y-%m-%dT%H:%M_$wx$h.png'
 
 TEMPLATED_PATH="$HOME_DIR/$PICTURES_SUBDIR/$FILENAME_TEMPLATE"
 
-scrot $@ - | tee "$TEMPLATED_PATH" | xclip -selection clipboard -target image/png
+scrot $@ "$TEMPLATED_PATH" -e 'xclip -i $f -selection clipboard -target image/png'
